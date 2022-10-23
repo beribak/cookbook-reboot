@@ -16,8 +16,18 @@ class View
         gets.chomp
     end
 
+    def prep_time
+        p "Pleate put a preparation time."
+        gets.chomp
+    end
+
     def index 
         p "Index?"
         gets.chomp.to_i
+    end
+
+    def ask_user_for_dish 
+        p "What dish do you want to get recipes for?"
+        gets.chomp
     end
 end

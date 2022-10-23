@@ -23,7 +23,8 @@ class Router
     when 1 then @controller.list
     when 2 then @controller.create
     when 3 then @controller.destroy
-    when 4 then stop
+    when 4 then @controller.import_recipes
+    when 5 then stop
     else
       puts "Please press 1, 2, 3 or 4"
     end
@@ -36,9 +37,10 @@ class Router
   def display_tasks
     puts ""
     puts "What do you want to do next?"
-    puts "1 - List all recipes"
-    puts "2 - Create a new recipe"
-    puts "3 - Destroy a recipe"
-    puts "4 - Stop and exit the program"
+    puts " 1 - List all recipes"
+    puts " 2 - Create a new recipe"
+    puts " 3 - Destroy a recipe"
+    puts " 4 - Import a recipe from the web"
+    puts " 5 - Stop and exit the program"
   end
 end

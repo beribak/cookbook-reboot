@@ -7,7 +7,7 @@ class Cookbook
         @filepath = csv_path
         
         CSV.foreach(csv_path) do |row|
-            @recipes << Recipe.new(row[0], row[1]) 
+            @recipes << Recipe.new(row[0], row[1], row[2]) 
         end
     end 
 
@@ -30,7 +30,7 @@ class Cookbook
     def save_to_csv
         CSV.open(@filepath, "wb") do |csv|
             @recipes.each do |recipe|
-                csv << [recipe.name, recipe.description]
+                csv << [recipe.name, recipe.description, recipe.prep_time]
             end
         end
     end
