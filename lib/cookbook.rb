@@ -7,9 +7,16 @@ class Cookbook
         @filepath = csv_path
         
         CSV.foreach(csv_path) do |row|
-            @recipes << Recipe.new(row[0], row[1]) 
+            recipe = Recipe.new(row[0], row[1], row[2], row[4])
+            recipe.done = row[3] == "true"
+            @recipes << recipe 
         end
     end 
+
+    def mark(index)
+       @recipes[index].done = true
+       save_to_csv
+    end
 
     def all
         return @recipes
@@ -21,7 +28,7 @@ class Cookbook
     end
 
     def remove_recipe(index)
-        @recipes.delete_at(index) 
+        @recipes.delete_at(index)
         save_to_csv
     end
 
@@ -30,7 +37,7 @@ class Cookbook
     def save_to_csv
         CSV.open(@filepath, "wb") do |csv|
             @recipes.each do |recipe|
-                csv << [recipe.name, recipe.description]
+                csv << [recipe.name, recipe.description, recipe.rating, recipe.done, recipe.prep_time]
             end
         end
     end
